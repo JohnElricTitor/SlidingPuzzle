@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - GridManager
     - Movement
+    - TestingRaycast
     - TileType
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -45,11 +46,13 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11466}
+      Script: {instanceID: 11428}
     - Class: 114
-      Script: {instanceID: 17746}
+      Script: {instanceID: 11468}
     - Class: 114
-      Script: {instanceID: 21162}
+      Script: {instanceID: 12032}
+    - Class: 114
+      Script: {instanceID: 12964}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -131,6 +134,12 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   - hash:
       serializedVersion: 2
+      Hash: 1e82cd6da24d473f72792d65845fcc28
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GridManager
+  - hash:
+      serializedVersion: 2
       Hash: 89f9a1b4c64db9559e39f4a2e3bfaadd
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -149,7 +158,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 1f74ed43dcd4b6debc2d1978f9f32eba
+      Hash: 284f5d9bdaed2e2fa4d300ea0adcd718
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TileType
@@ -261,6 +270,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: 755d95295abcf4a24880e49cd9242d15
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TestingRaycast
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -413,6 +428,12 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
+      Hash: dae4be0e5b8caae719df4dabbb7511c7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Movement
+  - hash:
+      serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -483,19 +504,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 1e82cd6da24d473f72792d65845fcc28
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GridManager
-  - hash:
-      serializedVersion: 2
-      Hash: dae4be0e5b8caae719df4dabbb7511c7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Movement
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: E:/Projects/MyGames/PROJECTS&IDEAS/SlidingPuzzle/OtherFiles/Test.apk
+  playerPath: E:/Projects/MyGames/PROJECTS&IDEAS/SlidingPuzzle/Test.apk

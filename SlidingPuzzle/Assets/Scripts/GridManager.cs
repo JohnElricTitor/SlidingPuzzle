@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    private int[,] tiles;                   //2D array storing all the types of tiles
+    
+    private int[,] tiles;                   //2D ARRAY  TO GENERATE GRID STORING ALL THE TYPES OF TILES     
     [SerializeField] GameObject[] tileTypes = null;
-    [SerializeField] int gridX = 0;
-    [SerializeField] int gridZ = 0;
-    [SerializeField] float gridSpacingOffset = 2f;
+    public int gridX = 0;
+    public int gridZ = 0;
+    public float gridSpacingOffset = 2f;
     public Vector3 gridOrigin = Vector3.zero;
 
     [SerializeField] int pathLength = 0;
     private int pathCount = 0;
     bool isDeadSpace = false;
 
-    [SerializeField] GameObject empty;
+    [SerializeField] GameObject empty = null;
 
     private void Start()
     {
@@ -72,7 +73,7 @@ public class GridManager : MonoBehaviour
         while(!isDeadSpace)
         {
             int rand = Random.Range(0, transform.childCount);
-            if (transform.GetChild(rand).GetComponent<TileType>().Type != 0)
+            if (transform.GetChild(rand).GetComponent<TileType>().type != 0)
             {
                 GameObject blank = Instantiate(empty, transform.GetChild(rand).position, Quaternion.identity);
                 blank.transform.parent = this.transform;
