@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5039102981690615792}
-  m_Mesh: {fileID: 115521239820664571, guid: d0f2ea27098b5e94480db520731bb972, type: 3}
+  m_Mesh: {fileID: 674340280032488212, guid: 0335582b18f341641a3e6972b88b4d81, type: 3}
 --- !u!23 &6840546749424616997
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -121,16 +121,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directions:
-    tileUD: {fileID: 1425387749415092266, guid: dda11d37b2b560448859f00b23511825,
+    Default: {fileID: 674340280032488212, guid: 0335582b18f341641a3e6972b88b4d81,
       type: 3}
-    tileLR: {fileID: 5128930357466417249, guid: 7d671fa8666dc1840b4bc798fecd3cf4,
+    tileUD: {fileID: -8835427409273125383, guid: acad31d2e8a2aaa47a60aa685a93dbe0,
       type: 3}
-    tileDL: {fileID: 115521239820664571, guid: d0f2ea27098b5e94480db520731bb972, type: 3}
-    tileDR: {fileID: -1443459569589930836, guid: e8a3cb8377271854989f541fc855d094,
+    tileLR: {fileID: 1425387749415092266, guid: a73964ed9c8249c4fa690b75989bb2c1,
       type: 3}
-    tileUL: {fileID: 8339801430368983967, guid: cf778a494a0a10c4288e3a64b18a9ef1,
+    tileDL: {fileID: 3354992173119541186, guid: 8dec6b7502ab73943ad37208ebbb73a3,
       type: 3}
-    tileUR: {fileID: 4455619420390447572, guid: 4ad408b29a261894890dca174a9758bc,
+    tileDR: {fileID: 5346914643944357332, guid: 220e9f8677f89f240a4d732ed7210d03,
+      type: 3}
+    tileUL: {fileID: 7008706266313404299, guid: 4dd787860f7390947bd33c704630bc2e,
+      type: 3}
+    tileUR: {fileID: -638974667764996775, guid: 602cc7b7f0dacab43a8a0da4f8059e33,
       type: 3}
   rayLength: 1.2
   offSet: 0

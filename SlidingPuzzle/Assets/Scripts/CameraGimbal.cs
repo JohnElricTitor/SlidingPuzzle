@@ -10,7 +10,7 @@ public class CameraGimbal : MonoBehaviour
     int height;
     float offSet;
    
-    // Start is called before the first frame update
+    // PLACE CAMERA IN CENTER OF THE GRID 
     void Start()
     {
         width = gridManager.GetComponent<GridManager>().gridX;
@@ -19,4 +19,10 @@ public class CameraGimbal : MonoBehaviour
 
         transform.position = new Vector3(((width * offSet) - offSet) / 2 , 0, ((height * offSet) - offSet) / 2);
     }
+
+    void Zoom()
+    { }
+
+    void Rotate()
+    { }
 }
