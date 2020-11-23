@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraGimbal : MonoBehaviour
 {
 
-    [SerializeField]GameObject gridManager;
+    [SerializeField]GameObject gridManager = null;
     int width;
     int height;
     float offSet;

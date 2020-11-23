@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    GameObject empty = null;    //STORE EMPTY TILE HERE 
     float xTemp;                //xPOS OF TOUCHED TILE
     float zTemp;                //zPOS OF TOUCHED TILE
 
@@ -22,8 +21,8 @@ public class Movement : MonoBehaviour
         RaycastHit hit;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);     //POINT TOUCHED ON SCREEN
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);                //FORWARD DIRECTION FROM CAMERA
-
         Debug.DrawRay(mousePos, Camera.main.transform.forward * rayLength, Color.red); //DRAWS THE RAYCAST FROM POINT TOUCHED ON SCREEN
+
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -31,6 +30,8 @@ public class Movement : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, rayLength))
             {
+                Debug.DrawLine(mousePos, hit.transform.position , Color.blue); //DRAWS THE RAYCAST FROM POINT TOUCHED ON SCREEN
+
                 if (Vector3.Distance(hit.transform.position, empty.transform.position) == 2)
                 {
                     xTemp = hit.transform.position.x;

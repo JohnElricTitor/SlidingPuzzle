@@ -18,7 +18,7 @@ public class Direction
 public class PathTile : MonoBehaviour
 {
     
-    [SerializeField] Direction directions;  //STORE ALL VARIATIONS OF WALKING TILE. USED A SEPERATE CLASS SO THAT UNITYS INTERACE SPECIFIES WHAT TILE TO PLACE IN WHAT SLOT (CONSIDER USING A STRUCT AFTER YOU FIX THE TILE NAMES IN BLENDER)
+    [SerializeField] Direction directions = null;  //STORE ALL VARIATIONS OF WALKING TILE. USED A SEPERATE CLASS SO THAT UNITYS INTERACE SPECIFIES WHAT TILE TO PLACE IN WHAT SLOT (CONSIDER USING A STRUCT AFTER YOU FIX THE TILE NAMES IN BLENDER)
     [SerializeField] float rayLength = 0;   //LENGTH OF THE 4 RAYCASTS USED TO DETECT TILES
     [SerializeField] float offSet = 0;      //CURRENTLY NOT BEING USED BUT INCASE YOU WANT TO OFFSET THE RAYCASTS SO THEY DONT START AT CENTER OF OBJECT
 
@@ -55,7 +55,7 @@ public class PathTile : MonoBehaviour
             { 
                 up = true;
                 Debug.DrawLine(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), hit.point, Color.red);
-                Debug.Log("Up Raycast hit: " + hit.transform.gameObject.name);
+                //Debug.Log("Up Raycast hit: " + hit.transform.gameObject.name);
             }
             //ELSE KEEP FALSE AND DRAW BLACK RAY
             else
@@ -73,13 +73,13 @@ public class PathTile : MonoBehaviour
             {
                 down = true;
                 Debug.DrawLine(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), hit.point, Color.red);
-                Debug.Log("Down Raycast hit: " + hit.transform.gameObject.name);
+                //Debug.Log("Down Raycast hit: " + hit.transform.gameObject.name);
             }
             //ELSE KEEP FALSE AND DRAW BLUE RAY
             else
             {
                 down = false;
-                Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z - offSet), Vector3.back * rayLength, Color.blue); //Down
+                //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z - offSet), Vector3.back * rayLength, Color.blue); //Down
             }
         }
 
@@ -91,7 +91,7 @@ public class PathTile : MonoBehaviour
             {
                 left = true;
                 Debug.DrawLine(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), hit.point, Color.red);
-                Debug.Log("Left Raycast hit: " + hit.transform.gameObject.name);
+                //Debug.Log("Left Raycast hit: " + hit.transform.gameObject.name);
             }
             //ELSE KEEP FALSE AND DRAW GREEN RAY
             else
@@ -109,7 +109,7 @@ public class PathTile : MonoBehaviour
             {
                 right = true;
                 Debug.DrawLine(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), hit.point, Color.red);
-                Debug.Log("Right Raycast hit: " + hit.transform.gameObject.name);
+                //Debug.Log("Right Raycast hit: " + hit.transform.gameObject.name);
             }
             //ELSE KEEP FALSE AND YELLOW ORIGINAL RAY
             else
