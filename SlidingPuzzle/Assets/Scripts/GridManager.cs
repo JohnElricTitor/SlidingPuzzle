@@ -26,7 +26,7 @@ public class GridManager : MonoBehaviour
    
     private void Start()
     {
-        gridY = Random.Range(5,25);
+        //gridY = Random.Range(5,25);
 
         for(int y = 0; y < gridY; y++)
         {
