@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System; // this is so you can convert bool to int
 
 [System.Serializable]
 public class Direction 
@@ -15,6 +16,8 @@ public class Direction
     public Mesh tileUR;
 }
 
+
+
 public class PathTile : MonoBehaviour
 {
     
@@ -26,6 +29,7 @@ public class PathTile : MonoBehaviour
     bool up, down, left, right;             //BOOLEANS TO FOR ANY SIDE THAT HITS A WALKABLE TILE
     MeshFilter currentMesh;                 //USED TO STORE CURRENT DIRECTION MESH OF TILE
 
+
     private void Start()
     {
         currentMesh = GetComponent<MeshFilter>();   //GET THE CURRENT MESH SO YOU CAN CHANGE IT 
@@ -34,6 +38,7 @@ public class PathTile : MonoBehaviour
     {
         DetectTile();
         TileChange();
+        //Testing();
     }
 
 
@@ -148,5 +153,20 @@ public class PathTile : MonoBehaviour
         }
         if(!up && !down && !left && !right)
             currentMesh.mesh = directions.Default;
+    }
+
+    void Testing()
+    {
+        if (Convert.ToInt32(up) + Convert.ToInt32(down) + Convert.ToInt32(right) + Convert.ToInt32(left) == 2)
+            Debug.Log(gameObject.name + " is connected");
+        else
+        {
+            Debug.Log(gameObject.name + " UP= " + Convert.ToInt32(up));
+            Debug.Log(gameObject.name + " DOWN= " + Convert.ToInt32(down));
+            Debug.Log(gameObject.name + " LEFT= " + Convert.ToInt32(left));
+            Debug.Log(gameObject.name + " RIGHT= " + Convert.ToInt32(right));
+        }
+
+       
     }
 }
