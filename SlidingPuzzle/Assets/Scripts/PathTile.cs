@@ -7,155 +7,137 @@ using System; // this is so you can convert bool to int
 [System.Serializable]
 public class Direction 
 {
-    public Mesh Default; 
-    public Mesh tileUD;
-    public Mesh tileLR;
-    public Mesh tileDL;
-    public Mesh tileDR;
-    public Mesh tileUL;
-    public Mesh tileUR;
+    public GameObject Default; 
+    public GameObject tileUD;
+    public GameObject tileLR;
+    public GameObject tileDL;
+    public GameObject tileDR;
+    public GameObject tileUL;
+    public GameObject tileUR;
 }
 
-
-
+[RequireComponent(typeof(TileType))]
 public class PathTile : MonoBehaviour
 {
     
-    [SerializeField] Direction directions = null;  //STORE ALL VARIATIONS OF WALKING TILE. USED A SEPERATE CLASS SO THAT UNITYS INTERACE SPECIFIES WHAT TILE TO PLACE IN WHAT SLOT (CONSIDER USING A STRUCT AFTER YOU FIX THE TILE NAMES IN BLENDER)
-    [SerializeField] float rayLength = 0;   //LENGTH OF THE 4 RAYCASTS USED TO DETECT TILES
-    [SerializeField] float offSet = 0;      //CURRENTLY NOT BEING USED BUT INCASE YOU WANT TO OFFSET THE RAYCASTS SO THEY DONT START AT CENTER OF OBJECT
+    [SerializeField] Direction directions = null;   //STORE ALL VARIATIONS OF WALKING TILE. USED A STRUCT SO THAT UNITYS INTERACE SPECIFIES WHAT TILE TO PLACE IN WHAT SLOT
 
-    Ray rayUp, rayDown, rayLeft, rayRight;  //4 DIRECTIONAL ARRAYS
-    bool up, down, left, right;             //BOOLEANS TO FOR ANY SIDE THAT HITS A WALKABLE TILE
-    MeshFilter currentMesh;                 //USED TO STORE CURRENT DIRECTION MESH OF TILE
-
+    [SerializeField] float rayLength = 0;           //LENGTH OF THE 4 RAYCASTS USED TO DETECT TILES
+    [SerializeField] float rayOffSet = 0;           //CURRENTLY NOT BEING USED BUT INCASE YOU WANT TO OFFSET THE RAYCASTS SO THEY DONT START AT CENTER OF OBJECT
+    Ray rayUp, rayDown, rayLeft, rayRight;          //4 DIRECTIONAL ARRAYS
+    bool up, down, left, right;                     //BOOLEANS THAT ARE USED TO STORE WHAT DIRECTIONAL RAYCASTS HITS A PATH TILE 
 
     private void Start()
     {
-        currentMesh = GetComponent<MeshFilter>();   //GET THE CURRENT MESH SO YOU CAN CHANGE IT 
-    }
-    void Update()
-    {
+        InstatiateTiles();
         DetectTile();
-        TileChange();
-        //Testing();
     }
 
-
-    private void DetectTile() //FUNCTION FOR DETECTING THE TILES ON ALL 4 DIRECTIONS USING RAYCASTS  
+    private void FixedUpdate()
     {
-        //SET RAYS OF ALL 4 DIRECTIONS
-        rayUp = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), Vector3.forward); 
-        rayDown = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z - offSet), Vector3.back); 
-        rayLeft = new Ray(new Vector3(transform.position.x - offSet, transform.position.y, transform.position.z), Vector3.left); 
-        rayRight = new Ray(new Vector3(transform.position.x + offSet, transform.position.y, transform.position.z), Vector3.right);
-     
-        RaycastHit hit;
-
-        //RAYCAST UP
-        if (Physics.Raycast(rayUp, out hit, rayLength)) 
-        {
-            //IF IT HITS WALKING TILE THEN IT DRAWS A RED RAY AND TURNS UP TO TRUE. LOGS THE NAME OF TILE IT HITS
-            if (hit.transform.GetComponent<TileType>().type == 0)
-            { 
-                up = true;
-                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), hit.point, Color.red);
-                //Debug.Log("Up Raycast hit: " + hit.transform.gameObject.name);
-            }
-            //ELSE KEEP FALSE AND DRAW BLACK RAY
-            else
-            {
-                up = false;
-                Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), Vector3.forward * rayLength, Color.black); //Up
-            }
-        }
-
-        //RAYCAST DOWN 
-        if (Physics.Raycast(rayDown, out hit, rayLength))
-        {
-            //IF IT HITS WALKING TILE THEN IT DRAWS A RED RAY AND TURNS DOWN TO TRUE. LOGS THE NAME OF TILE IT HITS
-            if (hit.transform.GetComponent<TileType>().type == 0)
-            {
-                down = true;
-                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), hit.point, Color.red);
-                //Debug.Log("Down Raycast hit: " + hit.transform.gameObject.name);
-            }
-            //ELSE KEEP FALSE AND DRAW BLUE RAY
-            else
-            {
-                down = false;
-                //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z - offSet), Vector3.back * rayLength, Color.blue); //Down
-            }
-        }
-
-        //RAYCAST LEFT
-        if (Physics.Raycast(rayLeft, out hit, rayLength))
-        {
-            //IF IT HITS WALKING TILE THEN IT DRAWS A RED RAY AND TURNS LEFT TO TRUE. LOGS THE NAME OF TILE IT HITS
-            if (hit.transform.GetComponent<TileType>().type == 0)
-            {
-                left = true;
-                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), hit.point, Color.red);
-                //Debug.Log("Left Raycast hit: " + hit.transform.gameObject.name);
-            }
-            //ELSE KEEP FALSE AND DRAW GREEN RAY
-            else
-            {
-                left = false;
-                Debug.DrawRay(new Vector3(transform.position.x - offSet, transform.position.y, transform.position.z), Vector3.left * rayLength, Color.green); //Left
-            }
-        }
-
-        //RAYCAST RIGHT
-        if (Physics.Raycast(rayRight, out hit, rayLength))
-        {
-            //IF IT HITS WALKING TILE THEN IT DRAWS A RED RAY AND TURNS RIGHT TO TRUE. LOGS THE NAME OF TILE IT HITS
-            if (hit.transform.GetComponent<TileType>().type == 0)
-            {
-                right = true;
-                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y, transform.position.z + offSet), hit.point, Color.red);
-                //Debug.Log("Right Raycast hit: " + hit.transform.gameObject.name);
-            }
-            //ELSE KEEP FALSE AND YELLOW ORIGINAL RAY
-            else
-            {
-                right = false;
-                Debug.DrawRay(new Vector3(transform.position.x + offSet, transform.position.y, transform.position.z), Vector3.right * rayLength, Color.yellow); //Right
-            }
-        }
+        if(transform.parent.GetSiblingIndex() == 0)
+            DetectTile();
     }
+   
+    //private void OnEnable()
+    //{
+    //    EventManager.OnDetect += DetectTile;
+    //    //EventManager.OnClicked += ChangeDirection;
+    //    EventManager.OnClicked -= WinCheck;
+    //}
+    //
+    //private void OnDisable()
+    //{
+    //    EventManager.OnDetect -= DetectTile;
+    //    //EventManager.OnClicked -= ChangeDirection;
+    //    EventManager.OnClicked -= WinCheck;
+    //}
 
-    private void TileChange() //CHANGES TILE MESH DEPENDING ON DIRECTIONAL BOOLS
+    void InstatiateTiles()                                                                  //INSTANTIATE ALL 7 TILES AS CHILDREN OF EMPTY PARENT 
     {
-        if(up || down)
-        {
-            currentMesh.mesh = directions.tileUD;
-        }
-        if(left || right)
-        {
-            currentMesh.mesh = directions.tileLR;
-        }
-        if(up && left)
-        {
-           currentMesh.mesh = directions.tileUL;
-        }
-        if(up && right)
-        {
-            currentMesh.mesh = directions.tileUR;
-        }
-        if(down && left)
-        {
-            currentMesh.mesh = directions.tileDL;
-        }
-        if (down && right)
-        {
-            currentMesh.mesh = directions.tileDR;
-        }
-        if(!up && !down && !left && !right)
-            currentMesh.mesh = directions.Default;
+        Instantiate(directions.Default, transform.position, Quaternion.identity, transform);
+        Instantiate(directions.tileUD, transform.position, Quaternion.identity, transform);
+        Instantiate(directions.tileLR, transform.position, Quaternion.identity, transform);
+        Instantiate(directions.tileDL, transform.position, Quaternion.identity, transform);
+        Instantiate(directions.tileDR, transform.position, Quaternion.identity, transform);
+        Instantiate(directions.tileUL, transform.position, Quaternion.identity, transform);
+        Instantiate(directions.tileUR, transform.position, Quaternion.identity, transform);
+        EnableTile(0);
     }
 
-    void Testing()
+
+    public void DetectTile()
+    {
+        rayUp = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z + rayOffSet), Vector3.forward);    //RAYCAST FOR UP DIRECTION                      
+        rayDown = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z - rayOffSet), Vector3.back);     //RAYCAST FOR DOWN DIRECTION
+        rayLeft = new Ray(new Vector3(transform.position.x - rayOffSet, transform.position.y, transform.position.z), Vector3.left);     //RAYCAST FOR LEFT DIRECTION
+        rayRight = new Ray(new Vector3(transform.position.x + rayOffSet, transform.position.y, transform.position.z), Vector3.right);   //RAYCAST FOR RIGHT DIRECTION
+
+        up = CheckDirection(rayUp);                                                                                                     //CHECK IF UP IS CONNECTED TO TILE OF SAME TYPE
+        down = CheckDirection(rayDown);                                                                                                 //CHECK IF DOWN IS CONNECTED TO TILE OF SAME TYPE
+        left = CheckDirection(rayLeft);                                                                                                 //CHECK IF LEFT IS CONNECTED TO TILE OF SAME TYPE
+        right = CheckDirection(rayRight);                                                                                               //CHECK IF RIGHT IS CONNECTED TO TILE OF SAME TYPE
+        
+        ChangeDirection();                                                                                                              //CHANGE DIRECTION OF THE TILE
+        Debug.Log("detected");
+    }
+
+    private bool CheckDirection(Ray raycast)                    
+    {    
+        bool dir = false;                                                                   //USED TO RETURN IF THEY RAY HITS PATH OR NOT 
+        RaycastHit hit;                                                                     //STORE OBJECT HIT
+
+        if (Physics.Raycast(raycast, out hit, rayLength))                                   //HIT RAY HITS OBJECT
+        {
+            if (hit.transform != transform && hit.transform.GetComponent<TileType>() != null &&                           //AND OBJECT HAS TILETYPE WITH TYPE == TO PATH OR == TO END
+              (hit.transform.GetComponent<TileType>().type == TileType.tileType.path ||
+               hit.transform.GetComponent<TileType>().type == TileType.tileType.end))
+            {
+                dir = true;                                                                 //CONNECTED IS TRUE
+            }
+            else
+                dir = false;                                                                //CONNECTED IS FALSE
+        }
+        return dir;                                                                         //RETURN RESULT
+    }
+
+    void ChangeDirection()
+    {
+        if (!up && !down && !left && !right)                                                //DEFAULT 
+            EnableTile(0);
+        
+        else if ((up || down) && (!left && !right))                                         //UD
+            EnableTile(1);
+        
+        else if ((left || right) && (!up && !down))                                         //LR
+            EnableTile(2);
+        
+        else if ((down && left) && (!up && !right))                                         //DL
+            EnableTile(3);
+        
+        else if ((down && right) && (!up && !left))                                         //DR
+            EnableTile(4);
+        
+        else if ((up && left) && (!down && !right))                                         //UL
+            EnableTile(5);
+        
+        else if ((up && right) && (!down && !left))                                         //UR
+            EnableTile(6);
+        else
+            return;
+    }
+
+
+    void EnableTile(int enabled)                                                                     //DISABLE ALL THE TILES THEN YOU CAN MANUAL TURN ON THE ONE YOU WANT 
+    {
+        for(int x = 0; x < 7; x++)
+        {
+            transform.GetChild(x).gameObject.SetActive(false);
+        }
+        transform.GetChild(enabled).gameObject.SetActive(true);
+    }
+
+    void WinCheck()
     {
         if (Convert.ToInt32(up) + Convert.ToInt32(down) + Convert.ToInt32(right) + Convert.ToInt32(left) == 2)
             Debug.Log(gameObject.name + " is connected");
@@ -165,8 +147,6 @@ public class PathTile : MonoBehaviour
             Debug.Log(gameObject.name + " DOWN= " + Convert.ToInt32(down));
             Debug.Log(gameObject.name + " LEFT= " + Convert.ToInt32(left));
             Debug.Log(gameObject.name + " RIGHT= " + Convert.ToInt32(right));
-        }
-
-       
+        }           
     }
 }

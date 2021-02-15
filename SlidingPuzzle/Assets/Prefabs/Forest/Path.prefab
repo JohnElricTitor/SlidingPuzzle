@@ -9,10 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3751880473098747748}
-  - component: {fileID: 269794848327430337}
-  - component: {fileID: 2619537756213838859}
   - component: {fileID: 8946376878780516496}
-  - component: {fileID: 499349449311759319}
+  - component: {fileID: -8848535682955133388}
   - component: {fileID: 6447333093369584814}
   m_Layer: 0
   m_Name: Path
@@ -35,53 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &269794848327430337
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4565114854485403102}
-  m_Mesh: {fileID: 3631941372083631243, guid: 2d3c21768acdbd24697122d891052b0a, type: 3}
---- !u!23 &2619537756213838859
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4565114854485403102}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: b7a8b1d76cbe81849a93e0986b9e5c6e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!65 &8946376878780516496
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90,12 +41,12 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4565114854485403102}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 0.5, z: 2}
   m_Center: {x: 0, y: -0.25, z: 0}
---- !u!114 &499349449311759319
+--- !u!114 &-8848535682955133388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,19 +72,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directions:
-    Default: {fileID: 3631941372083631243, guid: 2d3c21768acdbd24697122d891052b0a,
+    Default: {fileID: 7636305430467965307, guid: fa824601b57387c448680b3bb8b44629,
       type: 3}
-    tileUD: {fileID: 1280772751854794615, guid: bb3283a0c95221b4d95a8cf358e9a374,
+    tileUD: {fileID: 2802604020118850726, guid: 8cdc3b2ac904f4a4f9bc2de8757c26b1,
       type: 3}
-    tileLR: {fileID: -9073063469394896090, guid: fab3b31709aba9b44a98e81069f32e0e,
+    tileLR: {fileID: 2794378232843469225, guid: 0288b0bd670816944ac795d90a1f5463,
       type: 3}
-    tileDL: {fileID: -367580368692192113, guid: 0a236a27722f3d144849ed8046c7b60c,
+    tileDL: {fileID: 4690840428009361404, guid: 77b2f3d93da09424bbef95e9ba5f0977,
       type: 3}
-    tileDR: {fileID: -7801578241596068239, guid: 18d87423f8114c1489888bb533d92614,
+    tileDR: {fileID: 5636187031185628882, guid: 095254cd5669f0446819f8a843d6b8a8,
       type: 3}
-    tileUL: {fileID: 2781078682248560983, guid: 223644012127c4d439db3b3a3a8fcd38,
+    tileUL: {fileID: 5454672956411207798, guid: ee1a27ec735c19645b29cfb20bc2b930,
       type: 3}
-    tileUR: {fileID: -388424607350295876, guid: 81f74c190e161144c91a908c22e1a8a3,
+    tileUR: {fileID: 3403584844061667281, guid: 5d08b38a4a1fd0a4181e301d1cf74417,
       type: 3}
   rayLength: 1.2
   offSet: 0

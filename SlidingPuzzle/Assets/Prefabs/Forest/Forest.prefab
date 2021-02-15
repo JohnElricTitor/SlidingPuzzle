@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7196970636896254360}
   - component: {fileID: 6075106570059986493}
   - component: {fileID: 8335013323930190583}
-  - component: {fileID: 277940840327330088}
   - component: {fileID: 4987111263467445070}
   m_Layer: 0
   m_Name: Forest
@@ -81,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &277940840327330088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542146212324860706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef8a3d12d517a9f41a1025f5619caf47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
 --- !u!65 &4987111263467445070
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//SIMPLY STORES WHAT THE TILE TYPE IS, CONSIDER USING A STRUCT 
+[RequireComponent(typeof(BoxCollider))]
 public class TileType : MonoBehaviour
 {
-    public int type = 0;
+    public enum tileType {path, end, empty};
+    public tileType type;
+
+    
 }
