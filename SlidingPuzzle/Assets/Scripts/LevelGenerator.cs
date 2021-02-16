@@ -162,4 +162,12 @@ public class LevelGenerator : MonoBehaviour
     {
         
     }
+
+    public void PathOn()
+    {
+        foreach(PathTile pT in this.GetComponentsInChildren<PathTile>())
+        {   
+            pT.enabled = true;
+        }
+    }
 }

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public static EventManager fuckshit;
+    public static EventManager eventManager;
     public delegate void ClickAction();
     public static event ClickAction OnClicked;
+    public static event ClickAction OnTileMovement;
     public static event ClickAction OnUI;
 
     private void Awake()
     {
-        fuckshit = this;
+        eventManager = this;
     }
     void Update()
     {
@@ -20,7 +21,15 @@ public class EventManager : MonoBehaviour
             if(OnClicked != null)
                 OnClicked();
         }
-    }
+    } 
+
+    public void TileMovement()
+    {
+        if(OnTileMovement != null)
+        {            
+            OnTileMovement();
+        }
+    }   
 
     public void ChangeLevel()
     {

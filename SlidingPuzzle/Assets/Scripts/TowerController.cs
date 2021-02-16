@@ -61,6 +61,8 @@ public class TowerController : MonoBehaviour
         numberOfLevels += 1;                                                                                        //INCREASE THE LEVELS COUNT
         level.name = ("Level " + (numberOfLevels));                                                                 //RENAME THIS LEVEL
         level.SetAsLastSibling();                                                                                   //CHANGE ITS INDEX TO THE LAST 
+
+        transform.GetChild(0).GetComponent<LevelGenerator>().PathOn();
     }
         
     void MoveTower()

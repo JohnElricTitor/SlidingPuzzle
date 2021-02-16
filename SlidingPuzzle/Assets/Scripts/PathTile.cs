@@ -31,27 +31,30 @@ public class PathTile : MonoBehaviour
     {
         InstatiateTiles();
         DetectTile();
+
+        if(transform.parent.GetSiblingIndex() != 0)
+        enabled = false;
     }
 
     private void FixedUpdate()
     {
-        if(transform.parent.GetSiblingIndex() == 0)
-            DetectTile();
+   //     if(transform.parent.GetSiblingIndex() == 0)
+    //        DetectTile();
     }
    
-    //private void OnEnable()
-    //{
-    //    EventManager.OnDetect += DetectTile;
-    //    //EventManager.OnClicked += ChangeDirection;
-    //    EventManager.OnClicked -= WinCheck;
-    //}
-    //
-    //private void OnDisable()
-    //{
-    //    EventManager.OnDetect -= DetectTile;
-    //    //EventManager.OnClicked -= ChangeDirection;
-    //    EventManager.OnClicked -= WinCheck;
-    //}
+    private void OnEnable()
+    {
+        EventManager.OnTileMovement += DetectTile;
+        //EventManager.OnClicked += ChangeDirection;
+        //EventManager.OnLateClicked += WinCheck;
+    }
+    
+    private void OnDisable()
+    {
+        EventManager.OnTileMovement -= DetectTile;
+        //EventManager.OnClicked -= ChangeDirection;
+        //EventManager.OnLateClicked -= WinCheck;
+    }
 
     void InstatiateTiles()                                                                  //INSTANTIATE ALL 7 TILES AS CHILDREN OF EMPTY PARENT 
     {
