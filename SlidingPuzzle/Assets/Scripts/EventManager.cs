@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour
     public static event ClickAction OnClicked;
     public static event ClickAction OnTileMovement;
     public static event ClickAction OnUI;
+    public static event ClickAction OnNextLvl;
 
     private void Awake()
     {
@@ -31,10 +32,15 @@ public class EventManager : MonoBehaviour
         }
     }   
 
-    public void ChangeLevel()
+    public void UI()
     {
         if (OnUI != null)
             OnUI();
     }
 
+    public void NextLvl()
+    {
+        if (OnNextLvl != null)
+            OnNextLvl();
+    }
 }

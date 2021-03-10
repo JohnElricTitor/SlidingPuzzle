@@ -14,14 +14,14 @@ public class TowerController : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnUI += NextLevel;
-        EventManager.OnUI += MoveTower;
+        EventManager.OnNextLvl += NextLevel;
+        EventManager.OnNextLvl += MoveTower;
     }
 
     private void OnDisable()
     {
-        EventManager.OnUI -= NextLevel;
-        EventManager.OnUI -= MoveTower;
+        EventManager.OnNextLvl -= NextLevel;
+        EventManager.OnNextLvl -= MoveTower;
     }
 
     void Start()
@@ -70,4 +70,6 @@ public class TowerController : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)                                                              //LOOP THROUGH THE REST OF THE LEVELS AND MOVE THEM UP BY levelOffset
             transform.GetChild(i).transform.position = new Vector3 (0, transform.GetChild(i).position.y + levelOffset, 0);
     }
+    
+
 }

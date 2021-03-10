@@ -14,7 +14,12 @@ public class Movement : MonoBehaviour
     bool moving = false;
     Transform movingTile = null;
     Vector3 dest;
-    float speed = .2f;   
+    float speed = .2f;
+
+    private void Start()
+    {
+        enabled = false;
+    }
 
     private void OnEnable()
     {

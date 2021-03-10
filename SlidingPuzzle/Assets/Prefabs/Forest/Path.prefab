@@ -72,19 +72,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directions:
-    Default: {fileID: 7636305430467965307, guid: fa824601b57387c448680b3bb8b44629,
+    Default: {fileID: 8679084374426394750, guid: eac3539f6c8d14841a351ccc0e8ca896,
       type: 3}
-    tileUD: {fileID: 2802604020118850726, guid: 8cdc3b2ac904f4a4f9bc2de8757c26b1,
+    tileUD: {fileID: 2057323902464717834, guid: 8cdc3b2ac904f4a4f9bc2de8757c26b1,
       type: 3}
-    tileLR: {fileID: 2794378232843469225, guid: 0288b0bd670816944ac795d90a1f5463,
+    tileLR: {fileID: 3250804592160320474, guid: 0288b0bd670816944ac795d90a1f5463,
       type: 3}
-    tileDL: {fileID: 4690840428009361404, guid: 77b2f3d93da09424bbef95e9ba5f0977,
+    tileDL: {fileID: 8551311125522551608, guid: 77b2f3d93da09424bbef95e9ba5f0977,
       type: 3}
-    tileDR: {fileID: 5636187031185628882, guid: 095254cd5669f0446819f8a843d6b8a8,
+    tileDR: {fileID: 7055215846796930047, guid: 095254cd5669f0446819f8a843d6b8a8,
       type: 3}
-    tileUL: {fileID: 5454672956411207798, guid: ee1a27ec735c19645b29cfb20bc2b930,
+    tileUL: {fileID: 3081584856372146180, guid: ee1a27ec735c19645b29cfb20bc2b930,
       type: 3}
-    tileUR: {fileID: 3403584844061667281, guid: 5d08b38a4a1fd0a4181e301d1cf74417,
+    tileUR: {fileID: 6863389761742468453, guid: 5d08b38a4a1fd0a4181e301d1cf74417,
       type: 3}
-  rayLength: 1.2
-  offSet: 0
+  rayLength: 1.5
+  rayOffSet: 0

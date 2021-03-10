@@ -9,6 +9,10 @@ public class CameraController : MonoBehaviour
 
     private Vector3 prevPos;                                                                        //STORE THE PREVIOUS POSITION OF THE CAMERA
 
+    private void Start()
+    {
+        enabled = false;
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

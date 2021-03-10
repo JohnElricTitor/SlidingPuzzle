@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &985992867300994372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 496842802298828798}
+  - component: {fileID: 5680044990190206986}
+  - component: {fileID: 1973863302071154535}
+  - component: {fileID: 7750131759510410292}
+  m_Layer: 0
+  m_Name: Path
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &496842802298828798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985992867300994372}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.21, y: 0, z: -13.29}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5680044990190206986
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985992867300994372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.5, z: 2}
+  m_Center: {x: 0, y: -0.25, z: 0}
+--- !u!114 &1973863302071154535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985992867300994372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8a3d12d517a9f41a1025f5619caf47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+--- !u!114 &7750131759510410292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985992867300994372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487d1007b66d7774c8366445ee44ff33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directions:
+    Default: {fileID: 2640468079749105659, guid: 659f94f5f42f3f34cb554dd7c42a5175,
+      type: 3}
+    tileUD: {fileID: 5735005813753997202, guid: 7ef6f9615c920174aac0baf65176e7bf,
+      type: 3}
+    tileLR: {fileID: 262495249131164608, guid: 8a628eab8e6887c40b28b77aa79c68f3, type: 3}
+    tileDL: {fileID: 5933101649319090629, guid: 139f7406876de0e479271516ba64b92a,
+      type: 3}
+    tileDR: {fileID: 3148516346630052735, guid: 7bf2f9324c9068b45822c4fcf9ccc22a,
+      type: 3}
+    tileUL: {fileID: 6219492591957090558, guid: 96fddaa5a2f7a254db90802843d0c299,
+      type: 3}
+    tileUR: {fileID: 7789477851228448209, guid: 0157d465d2cf8c54a9a75203e3e77338,
+      type: 3}
+  rayLength: 1.5
+  rayOffSet: 0

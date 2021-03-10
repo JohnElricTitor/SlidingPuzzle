@@ -46,8 +46,9 @@ MonoBehaviour:
   themes:
   - {fileID: 11400000, guid: 374e0311369170c41aa291bf8412b604, type: 2}
   - {fileID: 11400000, guid: d3298041c903b3e45a70a16fcdc4c092, type: 2}
-  gridX: 100
-  gridZ: 100
+  - {fileID: 11400000, guid: 29534c6d10f51b94095baf3418be98f7, type: 2}
+  gridX: 6
+  gridZ: 6
   gridOrigin: {x: 0, y: 0, z: 0}
   gridSpacingOffset: 2
   pathLength: 10
