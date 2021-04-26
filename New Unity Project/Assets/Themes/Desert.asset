@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e24182a2e83e134fae4a0d3b41b8ece, type: 3}
+  m_Name: Desert
+  m_EditorClassIdentifier: 
+  Environment:
+  - {fileID: 6609442818924488454, guid: 7701aedb8cd7c20469c00673e8915414, type: 3}
+  - {fileID: 4035972939145941845, guid: 14564e9910b66604f80e07e70c448a2d, type: 3}
+  - {fileID: 246916442252624126, guid: e3186dd8e292dfe4db539b3a8f8538a8, type: 3}
+  - {fileID: 2526783811613572761, guid: 6f2d54d7e1f1dea42908f296d94cdcba, type: 3}
+  - {fileID: 5648027349382060603, guid: 3dd7dd6dda02e6b4885de4bec523091b, type: 3}
+  - {fileID: 5182336302140706574, guid: 7d37d6b05c77d574ba48d1f56953df5a, type: 3}
+  startTile: {fileID: 3556007431151223381, guid: 76a0b727067f5734fbbfe7186ac5da10,
+    type: 3}
+  endTile: {fileID: 3556007431151223381, guid: 76a0b727067f5734fbbfe7186ac5da10, type: 3}
+  pathTile: {fileID: 985992867300994372, guid: 6557149adfd4c6a488e12e7fc843db52, type: 3}

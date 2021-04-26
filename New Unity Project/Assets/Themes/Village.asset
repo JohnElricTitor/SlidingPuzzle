@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e24182a2e83e134fae4a0d3b41b8ece, type: 3}
+  m_Name: Village
+  m_EditorClassIdentifier: 
+  Environment:
+  - {fileID: 7541242336697796651, guid: d295062d59b5b9943b137f558b1ecf4a, type: 3}
+  - {fileID: 2668811878410064460, guid: 33579d3e1148b554fb6c80267692581d, type: 3}
+  - {fileID: 8938207795738444865, guid: 2b48fef799dedfb46ac4c0e38bf569e5, type: 3}
+  - {fileID: 7424511848113715942, guid: 95bcf0d430ecbdf4a92e2774396ccd92, type: 3}
+  - {fileID: 8131955819184766922, guid: dcc5ef34db5e9684394868264785c81d, type: 3}
+  startTile: {fileID: 7209121894913162218, guid: a37ecdf9e98f5014083f0a1366e9bad5,
+    type: 3}
+  endTile: {fileID: 7209121894913162218, guid: a37ecdf9e98f5014083f0a1366e9bad5, type: 3}
+  pathTile: {fileID: 493062720842633560, guid: f39dc9c2a5093904599dd391dc3ab088, type: 3}
