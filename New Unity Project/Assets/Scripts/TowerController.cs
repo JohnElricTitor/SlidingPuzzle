@@ -11,28 +11,43 @@ public class TowerController : MonoBehaviour
     [SerializeField] int levelOffset = 2;               //THE DISTANCE BETWEEN EACH LEVEL               
     [SerializeField] GameObject levelPrefab = null;     //PREFAB HOLDING EACH LEVEL   
 
+    public int pathLength = 0;
+    public int currentCount = 0;
+
+
+    void Start()
+    {
+        GenerateTower();
+        
+        pathLength = transform.GetChild(0).GetComponent<LevelGenerator>().pathLength;
+
+    }
 
     private void OnEnable()
     {
         EventManager.OnNextLvl += NextLevel;
-        EventManager.OnNextLvl += MoveTower;
     }
 
     private void OnDisable()
     {
         EventManager.OnNextLvl -= NextLevel;
-        EventManager.OnNextLvl -= MoveTower;
     }
 
-    void Start()
+
+
+    private void Update()
     {
-        GenerateTower();
+        if(currentCount == pathLength)
+        {
+            NextLevel();
+        }
     }
-
+    
+    
     //CREATE ALL THE LEVELS AS CHILDREN GAME OBJECTS
     void GenerateTower()
     {
-        for (int y = 0; y < numberOfLevels; y++)                                                                    //LOOP FOR GOING FLOOR BY FLOOR
+        for (int y = 0; y < numberOfLevels; y++)                                                                        //LOOP FOR GOING FLOOR BY FLOOR
         {
             GameObject level;
             
@@ -44,32 +59,40 @@ public class TowerController : MonoBehaviour
                 Debug.LogWarning("Tower missing Level prefab");
             }
             
-            level = Instantiate(level, transform.position, Quaternion.identity);                                    //INSTANTIATE FLOOR LEVEL
-            level.name = ("Level " + (y + 1));                                                                      //NAME IT ACCORDING TO WHAT LEVEL THE PLAYER IS ON
-            level.transform.parent = transform;                                                                     //PARENT THE LEVEL GAMEOBJECTS TO THE TOWER
-            level.transform.position = new Vector3(transform.position.x, y * - levelOffset, transform.position.z);  //LOWER LEVELS BY DESIRED OFFSET
+            level = Instantiate(level, transform.position, Quaternion.identity);                                        //INSTANTIATE FLOOR LEVEL
+            level.name = ("Level " + (y + 1));                                                                          //NAME IT ACCORDING TO WHAT LEVEL THE PLAYER IS ON
+            level.transform.parent = transform;                                                                         //PARENT THE LEVEL GAMEOBJECTS TO THE TOWER
+            level.transform.position = new Vector3(transform.position.x, y * - levelOffset, transform.position.z);      //LOWER LEVELS BY DESIRED OFFSET
         }
+        currentCount = 0;
+
+        //EventManager.eventManager.WinCheck();                                                                         NO CLUE WHY THE FUCK THIS IS HERE YOU FUCKING DUMB CUNT BOY 
     }
 
     //DROPS CURRENT LEVEL TO BOTTOM OF PARENT AND RAISES THE REST OF THE TOWER UP BY yOFFSET
     void NextLevel()
     {
-        Transform level = transform.GetChild(0);                                                                    //STORE THE TRANSFORM OF THE CURRENT LEVEL
-        level.GetComponent<LevelGenerator>().ClearGrid();                                                           //UNLOAD CURRENT LEVEL
-        level.position = new Vector3(0, transform.GetChild(transform.childCount - 1).position.y - levelOffset, 0);  //CHANGE CURRENT LEVELS POSITION TO THAT OF THE LAST CHILD IN ARRAY
-        level.GetComponent<LevelGenerator>().GenerateGrid();                                                        //LOAD IN NEW LEVEL BEFORE CHANGING ITS INDEX
-        numberOfLevels += 1;                                                                                        //INCREASE THE LEVELS COUNT
-        level.name = ("Level " + (numberOfLevels));                                                                 //RENAME THIS LEVEL
-        level.SetAsLastSibling();                                                                                   //CHANGE ITS INDEX TO THE LAST 
+            Transform level = transform.GetChild(0);                                                                    //STORE THE TRANSFORM OF THE CURRENT LEVEL
+            level.GetComponent<LevelGenerator>().ClearGrid();                                                           //UNLOAD CURRENT LEVEL
+            level.position = new Vector3(0, transform.GetChild(transform.childCount - 1).position.y - levelOffset, 0);  //CHANGE CURRENT LEVELS POSITION TO THAT OF THE LAST CHILD IN ARRAY
+            level.GetComponent<LevelGenerator>().GenerateGrid();                                                        //LOAD IN NEW LEVEL BEFORE CHANGING ITS INDEX
+            numberOfLevels += 1;                                                                                        //INCREASE THE LEVELS COUNT
+            level.name = ("Level " + (numberOfLevels));                                                                 //RENAME THIS LEVEL
+            level.SetAsLastSibling();                                                                                   //CHANGE ITS INDEX TO THE LAST 
 
-        transform.GetChild(0).GetComponent<LevelGenerator>().PathOn();
+            transform.GetChild(0).GetComponent<LevelGenerator>().PathOn();
+
+            pathLength = transform.GetChild(0).GetComponent<LevelGenerator>().pathLength;
+            currentCount = 0;
+
+            MoveTower();
     }
         
     void MoveTower()
     {
         for (int i = 0; i < transform.childCount; i++)                                                              //LOOP THROUGH THE REST OF THE LEVELS AND MOVE THEM UP BY levelOffset
             transform.GetChild(i).transform.position = new Vector3 (0, transform.GetChild(i).position.y + levelOffset, 0);
-    }
-    
+    }    
+
 
 }

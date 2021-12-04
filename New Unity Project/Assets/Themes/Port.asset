@@ -14,12 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Environment:
   - {fileID: 538115910712276890, guid: 3b6c7c4df955886428cb812f45c5d193, type: 3}
+  - {fileID: 6247062757440893357, guid: e9c2e98eb4259574b9b6c6379bb99b4b, type: 3}
+  - {fileID: 2024359824798191013, guid: 38f20ac7df0a47c4b9177e6b5fc5d957, type: 3}
+  - {fileID: 2779871714882720481, guid: c173f4cd377b7fb4b8d206eb7ceb85bd, type: 3}
+  - {fileID: 1593614128594360749, guid: 950297f98a7348545bc1d1185e1ffc22, type: 3}
   - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
-  - {fileID: 4228904945518082455, guid: e9c2e98eb4259574b9b6c6379bb99b4b, type: 3}
+  - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
+  - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
+  - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
+  - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
+  - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
+  - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
+  - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
   - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
   - {fileID: 8735067052005978189, guid: ce9c42dfa2d9f504c94625fb3323d6c5, type: 3}
   startTile: {fileID: 4002028949933214726, guid: a9334c13efba2f140a62ed611fa1ef64,
     type: 3}
-  endTile: {fileID: 4002028949933214726, guid: a9334c13efba2f140a62ed611fa1ef64, type: 3}
+  endTile: {fileID: 285300497574217792, guid: 19bbb5875acd940498650d4df7944d07, type: 3}
   pathTile: {fileID: 7412634700941702655, guid: 3621bb519b2a7914082851c93dacedcd,
     type: 3}

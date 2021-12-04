@@ -22,11 +22,15 @@ public class LevelGenerator : MonoBehaviour
     public float gridSpacingOffset = 2f;                                    //OFSETS THE TILES BY THEIR SIZE. LEFT PUBLIC SO THAT THE CAMERAGIMBAL CAN LOCATE THE CENTER POINT OF GRID
     
 
-    [SerializeField] int pathLength = 0;                                    //HOW MANY TILES THE PATH HAS LOOOOOOLL
+    public int pathLength = 0;                                              //HOW MANY TILES THE PATH HAS LOOOOOOLL
     private int pathCount = 0;                                              //USED TO KEEP TRACK OF HOW MANY PATH TILES ITS PLACED ON THE GRID SO FAR
     [SerializeField] GameObject emptyTile = null;                           //THIS IS THE EMPTY TILE USED TO MOVE OTHER TILES
-    bool isEmptySpace = false;                                               //USED TO DETERMINE IF A TILE HAS BEEN REPLACED WITH EMPTY TILE
+    bool isEmptySpace = false;                                              //USED TO DETERMINE IF A TILE HAS BEEN REPLACED WITH EMPTY TILE
 
+
+    enum Direction {Top, Bottom, Left, Right};
+    Direction startDirection;
+    Direction endDirection;
 
     private void Start()
     {
@@ -74,16 +78,19 @@ public class LevelGenerator : MonoBehaviour
         int dir = Random.Range(0,2);
         if (dir == 0)
         {
-            tiles[Random.Range(0, gridX - 1), 0] = startType;
-            tiles[Random.Range(0, gridX - 1), (gridZ - 1)] = endType;
+            tiles[Random.Range(0, gridX - 1), 0] = startType;               //START BOTTOM
+            startDirection = Direction.Bottom; 
+            tiles[Random.Range(0, gridX - 1), (gridZ - 1)] = endType;       //END TOP
+            endDirection = Direction.Top;
         }
         else
         {
-            tiles[0, Random.Range(0, gridZ - 1)] = startType;
-            tiles[(gridX - 1), Random.Range(0, gridZ - 1)] = endType;
+            tiles[0, Random.Range(0, gridZ - 1)] = startType;               //START LEFT
+            startDirection = Direction.Left;
+            tiles[(gridX - 1), Random.Range(0, gridZ - 1)] = endType;       //END RIGHT
+            endDirection = Direction.Right;
         }
-    }
-
+    } 
 
     private void CreatePath(int pathType)
     {
@@ -102,10 +109,10 @@ public class LevelGenerator : MonoBehaviour
 
     private void EmptySpace()
     {
-        while (!isEmptySpace)                                                //AS LONG AS A TILE HAS NOT BEEN REPLACED WITH AN EMPTY TILE
+        while (!isEmptySpace)                                               //AS LONG AS A TILE HAS NOT BEEN REPLACED WITH AN EMPTY TILE
         {
-            int randX = Random.Range(0, gridX);                             //CHECK RANDOM ARRAY SLOTS
-            int randZ = Random.Range(0, gridZ);                             //CHECK RANDOM ARRAY SLOTS
+            int randX = Random.Range(0, gridX);                             //CHECK RANDOM ARRAY-X SLOTS
+            int randZ = Random.Range(0, gridZ);                             //CHECK RANDOM ARRAY-Z SLOTS
 
             if (tiles[randX,randZ] < tileTypes.Length)                      //IF ITS NOT A PATH TILE, REPLACE IT WITH AN EMPTY SLOT
             {
@@ -122,16 +129,39 @@ public class LevelGenerator : MonoBehaviour
             for (int z = 0; z < gridZ; z++)                                                                                             //LOOP THROUGH EACH Z AXIS ON CURRENT X AXIS
             {
                 GameObject tile;                                                                                                        //MAKE GameObject NAMED TILE 
-                Vector3 spawnPosition = new Vector3(x * gridSpacingOffset, transform.position.y, z * gridSpacingOffset) + gridOrigin;   //ASSIN IT LOCATION ACCOUNT FOR OFFSET
+                Vector3 spawnPosition = new Vector3(x * gridSpacingOffset, transform.position.y, z * gridSpacingOffset) + gridOrigin;   //ASSIGN ITS LOCATION & ACCOUNT FOR OFFSET
                 
-                if (tiles[x, z] == startType)                                                                                           //IF ITS StartType, SPAWN StartTile
-                    tile = Instantiate(themes[currentTheme].startTile, spawnPosition, Quaternion.identity);
+                
+                //!!!!!!!!!!!!!!!!!!!!!!!!!MAKE SURE IT HAS CHECK CONDITION IF INCASE TILE DOESNT HAVE A TILE TYPE!!!!!!!!!!!!!!!!
 
-                else if (tiles[x, z] == endType)                                                                                        //IF ITS PathType, SPAWN PathTile
-                    tile = Instantiate(themes[currentTheme].endTile, spawnPosition, Quaternion.identity);
+                if (tiles[x, z] == startType && startDirection == Direction.Bottom)                                                     //IF ITS StartType && BOTTOM
+                {
+                    tile = Instantiate(themes[currentTheme].startTile, spawnPosition, Quaternion.Euler(0,-180,0));
+                    tile.GetComponent<TileType>().direction = TileType.TileDirection.bottom;
+                }
 
+                else if (tiles[x, z] == startType && startDirection == Direction.Left)                                                  //IF ITS StartType && LEFT
+                {
+                    tile = Instantiate(themes[currentTheme].startTile, spawnPosition, Quaternion.Euler(0, -90, 0));
+                    tile.GetComponent<TileType>().direction = TileType.TileDirection.left;
+                }
+                
+                else if (tiles[x, z] == endType && endDirection == Direction.Top)                                                       //IF ITS EndType && TOP
+                {
+                    tile = Instantiate(themes[currentTheme].endTile, spawnPosition, Quaternion.Euler(0,0,0));
+                    tile.GetComponent<TileType>().direction = TileType.TileDirection.top;
+                }
+                                                                                                                                        
+                else if (tiles[x, z] == endType && endDirection == Direction.Right)                                                     //IF ITS EndType && RIGHT
+                {
+                    tile = Instantiate(themes[currentTheme].endTile, spawnPosition, Quaternion.Euler(0, 90, 0));
+                    tile.GetComponent<TileType>().direction = TileType.TileDirection.right;
+                }
+
+                
                 else if (tiles[x,z] == pathType)                                                                                        //IF ITS PathType, SPAWN PathTile
                     tile = Instantiate(themes[currentTheme].pathTile, spawnPosition, Quaternion.identity);                                 
+
                 
                 else if(tiles[x,z] == emptyType)                                                                                        //IF ITS EmptyType, SPAWN EmptyTile
                 {
@@ -140,6 +170,7 @@ public class LevelGenerator : MonoBehaviour
                     tile.transform.SetAsFirstSibling();
                 }
                 
+
                 else                                                                                                                    //IF ITS AN ENVIRONMENT TILE, SPAWN THE ONE IN THAT SLOT
                     tile = Instantiate(themes[currentTheme].Environment[tiles[x, z]], spawnPosition, Quaternion.identity);
 
@@ -158,10 +189,6 @@ public class LevelGenerator : MonoBehaviour
     }
 
 
-    void ErrorCheck()
-    {
-        
-    }
 
     public void PathOn()
     {

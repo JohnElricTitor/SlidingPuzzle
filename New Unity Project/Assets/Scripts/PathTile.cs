@@ -20,12 +20,20 @@ public class Direction
 public class PathTile : MonoBehaviour
 {
     
-    [SerializeField] Direction directions = null;   //STORE ALL VARIATIONS OF WALKING TILE. USED A STRUCT SO THAT UNITYS INTERACE SPECIFIES WHAT TILE TO PLACE IN WHAT SLOT
+    [SerializeField] Direction directions = null;                       //STORE ALL VARIATIONS OF WALKING TILE. USED A STRUCT SO THAT UNITYS INTERACE SPECIFIES WHAT TILE TO PLACE IN WHAT SLOT
 
-    [SerializeField] float rayLength = 0;           //LENGTH OF THE 4 RAYCASTS USED TO DETECT TILES
-    [SerializeField] float rayOffSet = 0;           //CURRENTLY NOT BEING USED BUT INCASE YOU WANT TO OFFSET THE RAYCASTS SO THEY DONT START AT CENTER OF OBJECT
-    Ray rayUp, rayDown, rayLeft, rayRight;          //4 DIRECTIONAL ARRAYS
-    bool up, down, left, right;                     //BOOLEANS THAT ARE USED TO STORE WHAT DIRECTIONAL RAYCASTS HITS A PATH TILE 
+    [SerializeField] float rayLength = 0;                               //LENGTH OF THE 4 RAYCASTS USED TO DETECT TILES
+    [SerializeField] float rayOffSet = 0;                               //CURRENTLY NOT BEING USED BUT INCASE YOU WANT TO OFFSET THE RAYCASTS SO THEY DONT START AT CENTER OF OBJECT
+    Ray rayUp, rayDown, rayLeft, rayRight;                              //4 DIRECTIONAL ARRAYS
+    bool isUp, isDown, isLeft, isRight;                                 //BOOLEANS THAT ARE USED TO STORE WHAT DIRECTIONAL RAYCASTS HITS A PATH TILE 
+
+
+    public bool wasConnected;
+    public bool isConnected;
+
+    public bool isStart;
+    public bool isEnd;
+    TileType.tileType up,down,left,right;
 
     private void Start()
     {
@@ -33,30 +41,23 @@ public class PathTile : MonoBehaviour
         DetectTile();
 
         if(transform.parent.GetSiblingIndex() != 0)
-        enabled = false;
+            enabled = false;
     }
 
-    private void FixedUpdate()
-    {
-   //     if(transform.parent.GetSiblingIndex() == 0)
-    //        DetectTile();
-    }
-   
+
     private void OnEnable()
     {
         EventManager.OnTileMovement += DetectTile;
-        //EventManager.OnClicked += ChangeDirection;
-        //EventManager.OnLateClicked += WinCheck;
+        EventManager.onWinCheck += WinCheck;
     }
     
     private void OnDisable()
     {
         EventManager.OnTileMovement -= DetectTile;
-        //EventManager.OnClicked -= ChangeDirection;
-        //EventManager.OnLateClicked -= WinCheck;
+        EventManager.onWinCheck -= WinCheck;
     }
 
-    void InstatiateTiles()                                                                  //INSTANTIATE ALL 7 TILES AS CHILDREN OF EMPTY PARENT 
+    void InstatiateTiles()                                                                                                              //INSTANTIATE ALL 7 TILES AS CHILDREN OF EMPTY PARENT 
     {
         Instantiate(directions.Default, transform.position, Quaternion.identity, transform);
         Instantiate(directions.tileUD, transform.position, Quaternion.identity, transform);
@@ -76,62 +77,68 @@ public class PathTile : MonoBehaviour
         rayLeft = new Ray(new Vector3(transform.position.x - rayOffSet, transform.position.y, transform.position.z), Vector3.left);     //RAYCAST FOR LEFT DIRECTION
         rayRight = new Ray(new Vector3(transform.position.x + rayOffSet, transform.position.y, transform.position.z), Vector3.right);   //RAYCAST FOR RIGHT DIRECTION
 
-        up = CheckDirection(rayUp);                                                                                                     //CHECK IF UP IS CONNECTED TO TILE OF SAME TYPE
-        down = CheckDirection(rayDown);                                                                                                 //CHECK IF DOWN IS CONNECTED TO TILE OF SAME TYPE
-        left = CheckDirection(rayLeft);                                                                                                 //CHECK IF LEFT IS CONNECTED TO TILE OF SAME TYPE
-        right = CheckDirection(rayRight);                                                                                               //CHECK IF RIGHT IS CONNECTED TO TILE OF SAME TYPE
+        isUp = CheckDirection(rayUp);                                                                                                   //CHECK IF UP IS CONNECTED TO TILE OF SAME TYPE
+        isDown = CheckDirection(rayDown);                                                                                               //CHECK IF DOWN IS CONNECTED TO TILE OF SAME TYPE
+        isLeft = CheckDirection(rayLeft);                                                                                               //CHECK IF LEFT IS CONNECTED TO TILE OF SAME TYPE
+        isRight = CheckDirection(rayRight);                                                                                             //CHECK IF RIGHT IS CONNECTED TO TILE OF SAME TYPE
         
         ChangeDirection();                                                                                                              //CHANGE DIRECTION OF THE TILE
-        Debug.Log("detected");
+
+        up = CheckType(rayUp);
+        down = CheckType(rayDown);
+        left = CheckType(rayLeft);
+        right = CheckType(rayRight);
+    
     }
 
-    private bool CheckDirection(Ray raycast)                    
+    bool CheckDirection(Ray raycast)                    
     {    
-        bool dir = false;                                                                   //USED TO RETURN IF THEY RAY HITS PATH OR NOT 
-        RaycastHit hit;                                                                     //STORE OBJECT HIT
+        bool dir = false;                                                                                                               //USED TO RETURN IF THEY RAY HITS PATH OR NOT 
 
-        if (Physics.Raycast(raycast, out hit, rayLength))                                   //HIT RAY HITS OBJECT
+        RaycastHit hit;                                                                                                                 //STORE OBJECT HIT
+
+        if (Physics.Raycast(raycast, out hit, rayLength))                                                                               //HIT RAY HITS OBJECT
         {
-            if (hit.transform != transform && hit.transform.GetComponent<TileType>() != null &&                           //AND OBJECT HAS TILETYPE WITH TYPE == TO PATH OR == TO END
-              (hit.transform.GetComponent<TileType>().type == TileType.tileType.path ||
-               hit.transform.GetComponent<TileType>().type == TileType.tileType.end))
+            if (hit.transform != transform && hit.transform.GetComponent<TileType>() != null)                                           //AND OBJECT HAS TILETYPE WITH TYPE == TO PATH OR == TO END
             {
-                dir = true;                                                                 //CONNECTED IS TRUE
+                dir = (hit.transform.GetComponent<TileType>().type == TileType.tileType.path || 
+                       hit.transform.GetComponent<TileType>().type == TileType.tileType.end || 
+                       hit.transform.GetComponent<TileType>().type == TileType.tileType.start) ? true : false;
             }
-            else
-                dir = false;                                                                //CONNECTED IS FALSE
-        }
-        return dir;                                                                         //RETURN RESULT
-    }
 
+        }
+        return dir;       //RETURN IF ITS TOUCHING 
+    }
+     
+
+    
     void ChangeDirection()
     {
-        if (!up && !down && !left && !right)                                                //DEFAULT 
+        if (!isUp && !isDown && !isLeft && !isRight)                                                //DEFAULT 
             EnableTile(0);
         
-        else if ((up || down) && (!left && !right))                                         //UD
+        else if ((isUp || isDown) && (!isLeft && !isRight))                                         //UD
             EnableTile(1);
         
-        else if ((left || right) && (!up && !down))                                         //LR
+        else if ((isLeft || isRight) && (!isUp && !isDown))                                         //LR
             EnableTile(2);
         
-        else if ((down && left) && (!up && !right))                                         //DL
+        else if ((isDown && isLeft) && (!isUp && !isRight))                                         //DL
             EnableTile(3);
         
-        else if ((down && right) && (!up && !left))                                         //DR
+        else if ((isDown && isRight) && (!isUp && !isLeft))                                         //DR
             EnableTile(4);
         
-        else if ((up && left) && (!down && !right))                                         //UL
+        else if ((isUp && isLeft) && (!isDown && !isRight))                                         //UL
             EnableTile(5);
         
-        else if ((up && right) && (!down && !left))                                         //UR
+        else if ((isUp && isRight) && (!isDown && !isLeft))                                         //UR
             EnableTile(6);
         else
             return;
     }
-
-
-    void EnableTile(int enabled)                                                                     //DISABLE ALL THE TILES THEN YOU CAN MANUAL TURN ON THE ONE YOU WANT 
+    
+    void EnableTile(int enabled)                                                                                                        //DISABLE ALL THE TILES THEN YOU CAN MANUAL TURN ON THE ONE YOU WANT 
     {
         for(int x = 0; x < 7; x++)
         {
@@ -139,17 +146,49 @@ public class PathTile : MonoBehaviour
         }
         transform.GetChild(enabled).gameObject.SetActive(true);
     }
+    
+    TileType.tileType CheckType(Ray raycast)
+    {
+         TileType.tileType isType = TileType.tileType.path;                                                                             //ONLY MADE IT START AS PATH BECAUSE IT SAYS IT REQUIRES A VALUE 
+    
+         RaycastHit hit;
+    
+         if(Physics.Raycast(raycast, out hit, rayLength))
+         {
+             if (hit.transform != transform && hit.transform.GetComponent<TileType>() != null)
+                 isType = hit.transform.GetComponent<TileType>().type;
+         }
+         return isType;
+    }
 
+    void CheckPath ()
+    {
+        isStart = (up == TileType.tileType.start || down == TileType.tileType.start || left == TileType.tileType.start || right == TileType.tileType.start) ? true : false;
+        isEnd = (up == TileType.tileType.end || down == TileType.tileType.end || left == TileType.tileType.end || right == TileType.tileType.end) ? true : false;
+
+        if(!isStart && !isEnd)
+        {
+           // up == TileType.tileType.path || down == TileType.tileType.path || left == TileType.tileType.path || right == TileType.tileType.path;
+        
+        }
+    }
+
+    
     void WinCheck()
     {
-        if (Convert.ToInt32(up) + Convert.ToInt32(down) + Convert.ToInt32(right) + Convert.ToInt32(left) == 2)
-            Debug.Log(gameObject.name + " is connected");
-        else
+        isConnected = (Convert.ToInt32(isUp) + Convert.ToInt32(isDown) + Convert.ToInt32(isRight) + Convert.ToInt32(isLeft) == 2) ? true : false;
+        
+        if(isConnected && !wasConnected)
         {
-            Debug.Log(gameObject.name + " UP= " + Convert.ToInt32(up));
-            Debug.Log(gameObject.name + " DOWN= " + Convert.ToInt32(down));
-            Debug.Log(gameObject.name + " LEFT= " + Convert.ToInt32(left));
-            Debug.Log(gameObject.name + " RIGHT= " + Convert.ToInt32(right));
-        }           
+            transform.GetComponentInParent<TowerController>().currentCount++;
+            wasConnected = true;
+        }
+        if (!isConnected && wasConnected)
+        {
+            transform.GetComponentInParent<TowerController>().currentCount--;
+            wasConnected = false;
+        }
+        else
+            return;
     }
 }

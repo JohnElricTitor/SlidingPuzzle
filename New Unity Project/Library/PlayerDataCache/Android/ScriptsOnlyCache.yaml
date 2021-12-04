@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - LevelGenerator
     - Movement
     - PathTile
+    - Rotate
     - Theme
     - TileType
     - TowerController
@@ -124,111 +125,113 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1580}
-    - Class: 114
       Script: {instanceID: 1582}
     - Class: 114
       Script: {instanceID: 1584}
     - Class: 114
       Script: {instanceID: 1586}
     - Class: 114
-      Script: {instanceID: 1598}
+      Script: {instanceID: 1588}
     - Class: 114
-      Script: {instanceID: 1612}
+      Script: {instanceID: 1596}
     - Class: 114
-      Script: {instanceID: 1654}
+      Script: {instanceID: 1610}
     - Class: 114
-      Script: {instanceID: 1840}
+      Script: {instanceID: 1652}
     - Class: 114
-      Script: {instanceID: 1848}
+      Script: {instanceID: 1838}
     - Class: 114
-      Script: {instanceID: 1876}
+      Script: {instanceID: 1846}
     - Class: 114
-      Script: {instanceID: 1940}
+      Script: {instanceID: 1874}
     - Class: 114
-      Script: {instanceID: 1966}
+      Script: {instanceID: 1938}
     - Class: 114
-      Script: {instanceID: 2054}
+      Script: {instanceID: 1964}
     - Class: 114
-      Script: {instanceID: 2146}
+      Script: {instanceID: 2052}
     - Class: 114
-      Script: {instanceID: 2298}
+      Script: {instanceID: 2144}
+    - Class: 114
+      Script: {instanceID: 2296}
+    - Class: 114
+      Script: {instanceID: 2350}
     - Class: 114
       Script: {instanceID: 2352}
     - Class: 114
-      Script: {instanceID: 2354}
+      Script: {instanceID: 2382}
     - Class: 114
-      Script: {instanceID: 2384}
+      Script: {instanceID: 2684}
     - Class: 114
-      Script: {instanceID: 2686}
+      Script: {instanceID: 2796}
     - Class: 114
-      Script: {instanceID: 2798}
+      Script: {instanceID: 2828}
     - Class: 114
-      Script: {instanceID: 2830}
+      Script: {instanceID: 2914}
     - Class: 114
-      Script: {instanceID: 2916}
+      Script: {instanceID: 2978}
     - Class: 114
-      Script: {instanceID: 2980}
+      Script: {instanceID: 3062}
     - Class: 114
-      Script: {instanceID: 3064}
+      Script: {instanceID: 3094}
     - Class: 114
-      Script: {instanceID: 3096}
+      Script: {instanceID: 3186}
     - Class: 114
-      Script: {instanceID: 3188}
+      Script: {instanceID: 3238}
     - Class: 114
-      Script: {instanceID: 3240}
+      Script: {instanceID: 3292}
     - Class: 114
-      Script: {instanceID: 3294}
+      Script: {instanceID: 3362}
     - Class: 114
-      Script: {instanceID: 3364}
+      Script: {instanceID: 3370}
     - Class: 114
-      Script: {instanceID: 3372}
+      Script: {instanceID: 3500}
     - Class: 114
-      Script: {instanceID: 3502}
+      Script: {instanceID: 3566}
     - Class: 114
-      Script: {instanceID: 3568}
+      Script: {instanceID: 3582}
     - Class: 114
-      Script: {instanceID: 3584}
+      Script: {instanceID: 3626}
     - Class: 114
-      Script: {instanceID: 3628}
+      Script: {instanceID: 3718}
     - Class: 114
-      Script: {instanceID: 3720}
+      Script: {instanceID: 3746}
     - Class: 114
-      Script: {instanceID: 3748}
+      Script: {instanceID: 3758}
     - Class: 114
-      Script: {instanceID: 3760}
+      Script: {instanceID: 3908}
     - Class: 114
-      Script: {instanceID: 3910}
+      Script: {instanceID: 3932}
     - Class: 114
-      Script: {instanceID: 3934}
+      Script: {instanceID: 4018}
     - Class: 114
-      Script: {instanceID: 4020}
+      Script: {instanceID: 4074}
     - Class: 114
-      Script: {instanceID: 4076}
+      Script: {instanceID: 4090}
     - Class: 114
-      Script: {instanceID: 4092}
+      Script: {instanceID: 4132}
     - Class: 114
-      Script: {instanceID: 4134}
+      Script: {instanceID: 4164}
     - Class: 114
-      Script: {instanceID: 4166}
+      Script: {instanceID: 4168}
     - Class: 114
-      Script: {instanceID: 4170}
+      Script: {instanceID: 4260}
     - Class: 114
-      Script: {instanceID: 4262}
+      Script: {instanceID: 4264}
     - Class: 114
-      Script: {instanceID: 4266}
+      Script: {instanceID: 4330}
     - Class: 114
-      Script: {instanceID: 4332}
+      Script: {instanceID: 4440}
     - Class: 114
-      Script: {instanceID: 4442}
+      Script: {instanceID: 4614}
     - Class: 114
-      Script: {instanceID: 4616}
+      Script: {instanceID: 4692}
     - Class: 114
-      Script: {instanceID: 4694}
+      Script: {instanceID: 4794}
     - Class: 114
-      Script: {instanceID: 4796}
+      Script: {instanceID: 5038}
     - Class: 114
-      Script: {instanceID: 5040}
+      Script: {instanceID: 5178}
     - Class: 114
       Script: {instanceID: 5194}
     - Class: 114
@@ -262,6 +265,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -480,7 +487,7 @@ ScriptsOnlyBuild:
     className: CinemachineCollider
   - hash:
       serializedVersion: 2
-      Hash: 284f5d9bdaed2e2fa4d300ea0adcd718
+      Hash: 0ed048484c37f846db7437c9d1ef82ff
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TileType
@@ -642,7 +649,7 @@ ScriptsOnlyBuild:
     className: CinemachineSameAsFollowTarget
   - hash:
       serializedVersion: 2
-      Hash: 8f13b6b3c7016e06f7e89833c10e9da1
+      Hash: 196a089748f1ab76dd1763aef2540f50
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PathTile
@@ -1134,7 +1141,13 @@ ScriptsOnlyBuild:
     className: UniversalAdditionalLightData
   - hash:
       serializedVersion: 2
-      Hash: 5ac1504d5f504eb0a4b591dc803e7ab4
+      Hash: 5bddb32bcb848f51c6efb9a0b86ba855
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Rotate
+  - hash:
+      serializedVersion: 2
+      Hash: 9d83a9438331a941efe001d6d67ff539
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TowerController

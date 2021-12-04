@@ -11,6 +11,9 @@ public class EventManager : MonoBehaviour
     public static event ClickAction OnUI;
     public static event ClickAction OnNextLvl;
 
+    public static event ClickAction onWinCheck;
+
+
     private void Awake()
     {
         eventManager = this;
@@ -42,5 +45,12 @@ public class EventManager : MonoBehaviour
     {
         if (OnNextLvl != null)
             OnNextLvl();
+    }
+
+
+    public void WinCheck()
+    {
+        if (onWinCheck != null)
+            onWinCheck();
     }
 }

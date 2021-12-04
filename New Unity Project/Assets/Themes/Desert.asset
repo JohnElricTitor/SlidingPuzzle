@@ -19,7 +19,11 @@ MonoBehaviour:
   - {fileID: 2526783811613572761, guid: 6f2d54d7e1f1dea42908f296d94cdcba, type: 3}
   - {fileID: 5648027349382060603, guid: 3dd7dd6dda02e6b4885de4bec523091b, type: 3}
   - {fileID: 5182336302140706574, guid: 7d37d6b05c77d574ba48d1f56953df5a, type: 3}
+  - {fileID: 5182336302140706574, guid: 7d37d6b05c77d574ba48d1f56953df5a, type: 3}
+  - {fileID: 5182336302140706574, guid: 7d37d6b05c77d574ba48d1f56953df5a, type: 3}
+  - {fileID: 5182336302140706574, guid: 7d37d6b05c77d574ba48d1f56953df5a, type: 3}
+  - {fileID: 5182336302140706574, guid: 7d37d6b05c77d574ba48d1f56953df5a, type: 3}
   startTile: {fileID: 3556007431151223381, guid: 76a0b727067f5734fbbfe7186ac5da10,
     type: 3}
-  endTile: {fileID: 3556007431151223381, guid: 76a0b727067f5734fbbfe7186ac5da10, type: 3}
+  endTile: {fileID: 4627075163628374095, guid: 5fe04925ce986c045ac87d7c09c08d06, type: 3}
   pathTile: {fileID: 985992867300994372, guid: 6557149adfd4c6a488e12e7fc843db52, type: 3}

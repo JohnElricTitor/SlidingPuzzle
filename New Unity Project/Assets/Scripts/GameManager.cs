@@ -53,7 +53,5 @@ public class GameManager : MonoBehaviour
         if (title.transform.position == playPos)
             title.SetActive(false);
     }
-
-
 }
 

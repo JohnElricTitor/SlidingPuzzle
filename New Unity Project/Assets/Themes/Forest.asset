@@ -16,10 +16,13 @@ MonoBehaviour:
   - {fileID: 6338658452471162935, guid: a6165556ad0595149ab2bc73367067e7, type: 3}
   - {fileID: 8373214409385202895, guid: 87ea5299eb24176479110ea278b65832, type: 3}
   - {fileID: 7411687052729478894, guid: 3ca7bce4d8373b34f9794714b729885a, type: 3}
-  - {fileID: 151954244546803628, guid: 4783de03c482db94cbe40b3b7b0b9b12, type: 3}
   - {fileID: 5662362921814658087, guid: c11b2ef5a55aaa041b50f2986eaf2be0, type: 3}
+  - {fileID: 3309768448612559570, guid: 103e0f6a827a1a74ca63ba07c67855f8, type: 3}
+  - {fileID: 9128836021611232851, guid: 3d1ef9a59bd86cd44bcef07d6d63ee63, type: 3}
+  - {fileID: 8331344635626386688, guid: 4783de03c482db94cbe40b3b7b0b9b12, type: 3}
+  - {fileID: 8331344635626386688, guid: 4783de03c482db94cbe40b3b7b0b9b12, type: 3}
   startTile: {fileID: 7964391406800051631, guid: dd1c93beee49d354c83896cc17df757b,
     type: 3}
-  endTile: {fileID: 7964391406800051631, guid: dd1c93beee49d354c83896cc17df757b, type: 3}
+  endTile: {fileID: 8670633139893439117, guid: 65de76cdff5766949a5d13de4bb731eb, type: 3}
   pathTile: {fileID: 4565114854485403102, guid: df20d2be68c19ee47a0c4f28bccd932e,
     type: 3}

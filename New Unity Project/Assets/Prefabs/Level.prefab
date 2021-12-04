@@ -48,6 +48,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a24f2c993a271b3478dd0344c2752cc0, type: 2}
   - {fileID: 11400000, guid: 6e7ff12f043ed9c43ae120d0965ae7ef, type: 2}
   - {fileID: 11400000, guid: c145601226cee234394b33cc882fe64d, type: 2}
+  - {fileID: 11400000, guid: f134d8b2bac03364fada45cc1e4ac301, type: 2}
   gridX: 6
   gridZ: 6
   gridOrigin: {x: 0, y: 0, z: 0}
