@@ -8,7 +8,8 @@ public class EventManager : MonoBehaviour
     public delegate void ClickAction();
     public static event ClickAction OnClicked;
     public static event ClickAction OnTileMovement;
-    public static event ClickAction OnUI;
+    public static event ClickAction OnPause;
+    public static event ClickAction OnUnPause;
     public static event ClickAction OnNextLvl;
 
     public static event ClickAction onWinCheck;
@@ -35,10 +36,16 @@ public class EventManager : MonoBehaviour
         }
     }   
 
-    public void UI()
+    public void onPause()
     {
-        if (OnUI != null)
-            OnUI();
+        if (OnPause != null)
+            OnPause();
+    }
+
+    public void onUnPause()
+    {
+        if (OnUnPause != null)
+            OnUnPause();
     }
 
     public void NextLvl()

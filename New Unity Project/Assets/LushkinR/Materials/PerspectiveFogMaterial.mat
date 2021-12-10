@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PerspectiveFogMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 79f0d16cfdf2fbf4293b8b61be9cb584,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - BOOLEAN_6C4164AC: 0
+    - Vector1_7062d6dbc5224143824de7a295f9f5fb: 0.98
+    - Vector1_BF525535: 5
+    - Vector1_a1c14d1e604947cabaafabeb6c8aab84: 0
+    - Vector1_b1a89279a24a44c2ba624c8aed8a4fc1: 0
+    - Vector1_b3345ac5551341e6b47ac6388edbd61d: 0
+    m_Colors:
+    - Color_58E0201D: {r: 0.5276789, g: 0.77512616, b: 0.9245283, a: 0.69411767}
+  m_BuildTextureStacks: []

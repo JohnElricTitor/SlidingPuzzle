@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 using System; // this is so you can convert bool to int
 
 [System.Serializable]
@@ -20,19 +17,20 @@ public class Direction
 public class PathTile : MonoBehaviour
 {
     
-    [SerializeField] Direction directions = null;                       //STORE ALL VARIATIONS OF WALKING TILE. USED A STRUCT SO THAT UNITYS INTERACE SPECIFIES WHAT TILE TO PLACE IN WHAT SLOT
-
+    [SerializeField] Direction directions = null;                       //STORE ALL VARIATIONS OF WALKING TILE. USED A STRUCT SO THAT UNITY EDITOR CAN SPECIFIES WHAT TILE TO PLACE IN WHAT SLOT
     [SerializeField] float rayLength = 0;                               //LENGTH OF THE 4 RAYCASTS USED TO DETECT TILES
-    [SerializeField] float rayOffSet = 0;                               //CURRENTLY NOT BEING USED BUT INCASE YOU WANT TO OFFSET THE RAYCASTS SO THEY DONT START AT CENTER OF OBJECT
-    Ray rayUp, rayDown, rayLeft, rayRight;                              //4 DIRECTIONAL ARRAYS
+   
+    Ray rayUp, rayDown, rayLeft, rayRight;                              //4 DIRECTIONAL RAYS
     bool isUp, isDown, isLeft, isRight;                                 //BOOLEANS THAT ARE USED TO STORE WHAT DIRECTIONAL RAYCASTS HITS A PATH TILE 
 
-
+    //USED FOR CURRENT WIN CHECK
     public bool wasConnected;
     public bool isConnected;
-
+    
+    //USED FOR DETECTING FULL PATH CONNECTION (INCOMPLETE)
     public bool isStart;
     public bool isEnd;
+
     TileType.tileType up,down,left,right;
 
     private void Start()
@@ -40,7 +38,7 @@ public class PathTile : MonoBehaviour
         InstatiateTiles();
         DetectTile();
 
-        if(transform.parent.GetSiblingIndex() != 0)
+        if(transform.parent.GetSiblingIndex() != 0)         //IF THIS SPAWNS ON LEVEL THAT ISNT FIRST ONE, DISABLE THIS SCRIPT.....SEE IF YOU CAN DO THIS SOMEWHERE ELSE
             enabled = false;
     }
 
@@ -66,16 +64,16 @@ public class PathTile : MonoBehaviour
         Instantiate(directions.tileDR, transform.position, Quaternion.identity, transform);
         Instantiate(directions.tileUL, transform.position, Quaternion.identity, transform);
         Instantiate(directions.tileUR, transform.position, Quaternion.identity, transform);
-        EnableTile(0);
+        EnableTile(0);                                                                                                                  //ENABLE THE FIRST TILE ONLY (DEFAULT TILE)
     }
 
 
     public void DetectTile()
     {
-        rayUp = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z + rayOffSet), Vector3.forward);    //RAYCAST FOR UP DIRECTION                      
-        rayDown = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z - rayOffSet), Vector3.back);     //RAYCAST FOR DOWN DIRECTION
-        rayLeft = new Ray(new Vector3(transform.position.x - rayOffSet, transform.position.y, transform.position.z), Vector3.left);     //RAYCAST FOR LEFT DIRECTION
-        rayRight = new Ray(new Vector3(transform.position.x + rayOffSet, transform.position.y, transform.position.z), Vector3.right);   //RAYCAST FOR RIGHT DIRECTION
+        rayUp = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector3.forward);                //RAYCAST FOR UP DIRECTION                      
+        rayDown = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector3.back);                 //RAYCAST FOR DOWN DIRECTION
+        rayLeft = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector3.left);                 //RAYCAST FOR LEFT DIRECTION
+        rayRight = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector3.right);               //RAYCAST FOR RIGHT DIRECTION
 
         isUp = CheckDirection(rayUp);                                                                                                   //CHECK IF UP IS CONNECTED TO TILE OF SAME TYPE
         isDown = CheckDirection(rayDown);                                                                                               //CHECK IF DOWN IS CONNECTED TO TILE OF SAME TYPE
@@ -138,13 +136,13 @@ public class PathTile : MonoBehaviour
             return;
     }
     
-    void EnableTile(int enabled)                                                                                                        //DISABLE ALL THE TILES THEN YOU CAN MANUAL TURN ON THE ONE YOU WANT 
+    void EnableTile(int enabled)                                                                                                        //DISABLE ALL THE TILES THEN YOU CAN MANUALLY TURN ON THE ONE YOU WANT 
     {
         for(int x = 0; x < 7; x++)
         {
-            transform.GetChild(x).gameObject.SetActive(false);
+            transform.GetChild(x).gameObject.SetActive(false);                                                                          //DISABLE ALL TILES
         }
-        transform.GetChild(enabled).gameObject.SetActive(true);
+        transform.GetChild(enabled).gameObject.SetActive(true);                                                                         //ENABLE THE FIRST TILE ONLY (DEFAULT TILE)
     }
     
     TileType.tileType CheckType(Ray raycast)
